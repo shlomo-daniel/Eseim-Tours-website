@@ -166,7 +166,7 @@ body {
   animation: fadeInUp 1s ease;
 }
 .hero .hero-content .hero-logo {
-  max-width: 50%;
+  max-width: 60%;
   height: auto;
   margin-bottom: 2rem;
   animation: fadeIn 1.5s ease;
@@ -177,19 +177,19 @@ body {
   }
 }
 .hero .hero-content .hero-subtitle {
-  font-size: 1.5rem;
-  font-weight: 300;
-  margin-bottom: 2.5rem;
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
 @media (max-width: 768px) {
   .hero .hero-content .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
   }
 }
 @media (max-width: 480px) {
   .hero .hero-content .hero-subtitle {
-    font-size: 1rem;
+    font-size: 1.4rem;
   }
 }
 .hero .hero-content .hero-cta {

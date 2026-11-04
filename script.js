@@ -1,3 +1,27 @@
+// ===== Navbar =====
+const navbar = document.getElementById("navbar");
+const navToggle = document.getElementById("nav-toggle");
+const navMenu = document.getElementById("nav-menu");
+
+if (navbar && navToggle && navMenu) {
+  const setMenu = (open) => {
+    navMenu.classList.toggle("open", open);
+    navToggle.classList.toggle("open", open);
+    navToggle.setAttribute("aria-expanded", String(open));
+  };
+
+  navToggle.addEventListener("click", () =>
+    setMenu(!navMenu.classList.contains("open"))
+  );
+  navMenu.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => setMenu(false))
+  );
+
+  const onScroll = () => navbar.classList.toggle("scrolled", window.scrollY > 20);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+}
+
 // ===== Smooth Scroll for Anchor Links =====
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {

@@ -367,14 +367,15 @@ body {
 // ===== Hero Section =====
 .hero {
   position: relative;
-  height: 90vh;
+  min-height: 90vh;
+  padding: 100px 20px 90px;
   background: url("public/hero-section-background.jpg") center/cover no-repeat;
   @include flex-center;
   text-align: center;
   overflow: hidden;
 
   @media (max-width: $tablet) {
-    height: 80vh;
+    min-height: 80vh;
   }
 
   .hero-overlay {
@@ -400,14 +401,14 @@ body {
     animation: fadeInUp 1s ease;
 
     .hero-logo {
-      width: min(420px, 85%);
+      width: min(420px, 85%, 40vh);
       height: auto;
       filter: drop-shadow(0 4px 24px rgba(255, 255, 255, 0.35));
       margin-bottom: 1.75rem;
       animation: fadeIn 1.5s ease;
 
       @media (max-width: $tablet) {
-        width: 75%;
+        width: min(75%, 40vh);
       }
     }
 
@@ -471,6 +472,10 @@ body {
     color: $white;
     font-size: 2rem;
     animation: bounce 2s infinite;
+
+    @media (max-width: $tablet) {
+      bottom: 15px;
+    }
   }
 }
 

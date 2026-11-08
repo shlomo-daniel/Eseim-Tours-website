@@ -36,6 +36,15 @@ body {
   margin-bottom: 1rem;
   color: #1a1a1a;
 }
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  margin: 0.75rem auto 0;
+  border-radius: 2px;
+  background: #f7941d;
+}
 @media (max-width: 768px) {
   .section-title {
     font-size: 2rem;
@@ -434,7 +443,7 @@ body {
 }
 .services {
   padding: 80px 0 0;
-  background: #f5f5f5;
+  background: #eaf4fd;
 }
 @media (max-width: 768px) {
   .services {
@@ -453,11 +462,11 @@ body {
   min-height: max(33vh, 280px);
   padding: clamp(16px, 3vw, 40px) clamp(16px, 5vw, 80px);
   column-gap: clamp(16px, 4vw, 60px);
-  background: #ffffff;
+  background: #eaf4fd;
   overflow: hidden;
 }
 .services .service-card:nth-child(even) {
-  background: #f5f5f5;
+  background: #f7fbff;
 }
 .services .service-card .service-image {
   grid-column: 1;
@@ -487,7 +496,7 @@ body {
   padding-inline: 0;
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #4a90e2, #50c4ed);
+  background: linear-gradient(135deg, #f7941d, #ffb347);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -730,7 +739,7 @@ body {
 }
 .about {
   padding: 80px 0;
-  background: #ffffff;
+  background: #f4f9ff;
 }
 @media (max-width: 768px) {
   .about {
@@ -792,7 +801,13 @@ body {
 
 .reviews {
   padding: 80px 0;
-  background: #f5f5f5;
+  background: linear-gradient(135deg, #102a54, #1f4e9c);
+}
+.reviews .section-title {
+  color: #ffffff;
+}
+.reviews .section-subtitle {
+  color: rgba(255, 255, 255, 0.8);
 }
 @media (max-width: 768px) {
   .reviews {
@@ -868,7 +883,7 @@ body {
 
 .faq {
   padding: 80px 0;
-  background: #ffffff;
+  background: #f7fbff;
 }
 @media (max-width: 768px) {
   .faq {
@@ -880,7 +895,7 @@ body {
   margin: 0 auto;
 }
 .faq .faq-item {
-  background: #f5f5f5;
+  background: #ffffff;
   margin-bottom: 15px;
   border-radius: 10px;
   overflow: hidden;
@@ -932,7 +947,7 @@ body {
 
 .contact {
   padding: 80px 0;
-  background: #f5f5f5;
+  background: linear-gradient(180deg, #eaf4fd, #d3e9f9);
 }
 @media (max-width: 768px) {
   .contact {

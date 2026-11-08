@@ -517,48 +517,57 @@ body {
 
 // ===== Services Section =====
 .services {
-  padding: 80px 0;
+  padding: 80px 0 0;
   background: $light-gray;
 
   @media (max-width: $tablet) {
-    padding: 60px 0;
+    padding: 60px 0 0;
   }
 
   .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-
-    @media (max-width: $mobile) {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
   .service-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto auto auto 1fr;
+    min-height: max(33vh, 280px);
     background: $white;
-    border-radius: 15px;
     overflow: hidden;
-    @include box-shadow(0 4px 15px rgba(0, 0, 0, 0.08));
-    @include transition;
-    @include hover-lift;
+
+    &:nth-child(even) {
+      background: $light-gray;
+    }
 
     .service-image {
-      width: 100%;
-      height: 200px;
+      grid-column: 1;
+      grid-row: 1 / -1;
       overflow: hidden;
 
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        @include transition;
       }
     }
 
+    .service-icon,
+    .service-title,
+    .service-description {
+      grid-column: 2;
+      padding-inline: clamp(24px, 6vw, 100px);
+      max-width: 760px;
+      width: 100%;
+      justify-self: center;
+    }
+
     .service-icon {
-      text-align: center;
-      margin: -30px auto 0;
+      grid-row: 2;
+      margin: 0 auto 1rem;
+      padding-inline: 0;
       width: 60px;
       height: 60px;
       background: linear-gradient(135deg, $primary-color, $secondary-color);
@@ -566,31 +575,71 @@ body {
       @include flex-center;
       color: $white;
       font-size: 1.5rem;
-      position: relative;
-      z-index: 1;
     }
 
     .service-title {
-      font-size: 1.4rem;
+      grid-row: 3;
+      font-size: 1.6rem;
       font-weight: 600;
       text-align: center;
-      margin: 1.5rem 0 1rem;
+      margin: 0 0 1rem;
       color: $dark-color;
-      padding: 0 20px;
     }
 
     .service-description {
-      padding: 0 20px 25px;
+      grid-row: 4;
       text-align: center;
       color: $text-light;
       line-height: 1.8;
+      margin: 0;
     }
 
-    &:hover {
-      @include box-shadow(0 8px 25px rgba(0, 0, 0, 0.15));
+    &:nth-child(even) .service-image {
+      grid-column: 2;
+    }
 
-      .service-image img {
-        transform: scale(1.1);
+    &:nth-child(even) .service-icon,
+    &:nth-child(even) .service-title,
+    &:nth-child(even) .service-description {
+      grid-column: 1;
+    }
+
+    @media (max-width: $tablet) {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      min-height: 0;
+      padding-bottom: 2.5rem;
+
+      .service-image,
+      &:nth-child(even) .service-image {
+        grid-column: 1;
+        grid-row: 1;
+        height: max(33vh, 220px);
+        margin-bottom: 1.5rem;
+      }
+
+      .service-icon,
+      .service-title,
+      .service-description,
+      &:nth-child(even) .service-icon,
+      &:nth-child(even) .service-title,
+      &:nth-child(even) .service-description {
+        grid-column: 1;
+        padding-inline: 20px;
+      }
+
+      .service-icon {
+        grid-row: 2;
+        padding-inline: 0;
+      }
+
+      .service-title {
+        grid-row: 3;
+        font-size: 1.35rem;
+      }
+
+      .service-description {
+        grid-row: 4;
       }
     }
   }

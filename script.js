@@ -400,3 +400,48 @@ window.addEventListener("scroll", debouncedScroll);
   document.getElementById("cookie-accept").addEventListener("click", () => choose("accepted"));
   document.getElementById("cookie-decline").addEventListener("click", () => choose("declined"));
 })();
+
+
+// Intro video (once per browser session)
+(function () {
+  const overlay = document.getElementById("intro-overlay");
+  const video = document.getElementById("intro-video");
+  const skip = document.getElementById("intro-skip");
+  if (!overlay || !video) return;
+
+  let seen = false;
+  try {
+    seen = sessionStorage.getItem("introSeen") === "1";
+  } catch (e) {}
+  if (seen || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  overlay.hidden = false;
+  document.body.style.overflow = "hidden";
+  const cookieBanner = document.getElementById("cookie-banner");
+  if (cookieBanner) cookieBanner.style.visibility = "hidden";
+
+  let closed = false;
+  function closeIntro() {
+    if (closed) return;
+    closed = true;
+    try {
+      sessionStorage.setItem("introSeen", "1");
+    } catch (e) {}
+    overlay.classList.add("fade-out");
+    document.body.style.overflow = "";
+    if (cookieBanner) cookieBanner.style.visibility = "";
+    setTimeout(() => {
+      overlay.hidden = true;
+      video.pause();
+    }, 600);
+  }
+
+  video.addEventListener("ended", closeIntro);
+  video.addEventListener("error", closeIntro);
+  skip.addEventListener("click", closeIntro);
+  video.muted = true;
+  video.defaultPlaybackRate = 1.5;
+  video.playbackRate = 1.5;
+  const p = video.play();
+  if (p && p.catch) p.catch(closeIntro);
+})();

@@ -374,3 +374,29 @@ const debouncedScroll = debounce(function () {
 }, 100);
 
 window.addEventListener("scroll", debouncedScroll);
+
+
+// Cookie consent banner
+(function () {
+  const banner = document.getElementById("cookie-banner");
+  if (!banner) return;
+  let saved = null;
+  try {
+    saved = localStorage.getItem("cookieConsent");
+  } catch (e) {}
+  if (saved) return;
+
+  banner.hidden = false;
+  requestAnimationFrame(() => banner.classList.add("show"));
+
+  function choose(value) {
+    try {
+      localStorage.setItem("cookieConsent", value);
+    } catch (e) {}
+    banner.classList.remove("show");
+    setTimeout(() => (banner.hidden = true), 400);
+  }
+
+  document.getElementById("cookie-accept").addEventListener("click", () => choose("accepted"));
+  document.getElementById("cookie-decline").addEventListener("click", () => choose("declined"));
+})();

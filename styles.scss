@@ -183,13 +183,13 @@ body {
   right: 0;
   left: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(225, 240, 252, 0.68);
   -webkit-backdrop-filter: blur(14px) saturate(160%);
   backdrop-filter: blur(14px) saturate(160%);
   transition: background 0.3s ease, box-shadow 0.3s ease;
 
   &.scrolled {
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(225, 240, 252, 0.92);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
   }
 
@@ -327,7 +327,7 @@ body {
       align-items: stretch;
       gap: 8px;
       padding: 12px 20px 20px;
-      background: rgba(255, 255, 255, 0.97);
+      background: rgba(232, 244, 253, 0.97);
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
       opacity: 0;
       visibility: hidden;
@@ -535,6 +535,8 @@ body {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr auto auto auto 1fr;
     min-height: max(33vh, 280px);
+    padding: clamp(16px, 3vw, 40px) clamp(16px, 5vw, 80px);
+    column-gap: clamp(16px, 4vw, 60px);
     background: $white;
     overflow: hidden;
 
@@ -546,6 +548,8 @@ body {
       grid-column: 1;
       grid-row: 1 / -1;
       overflow: hidden;
+      border-radius: 28px;
+      @include box-shadow(0 10px 30px rgba(0, 0, 0, 0.12));
 
       img {
         width: 100%;
@@ -608,7 +612,7 @@ body {
       grid-template-columns: 1fr;
       grid-template-rows: auto;
       min-height: 0;
-      padding-bottom: 2.5rem;
+      padding: 16px 16px 2.5rem;
 
       .service-image,
       &:nth-child(even) .service-image {

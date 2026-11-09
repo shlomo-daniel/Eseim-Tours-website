@@ -747,16 +747,8 @@ body {
   }
 }
 .about .about-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-@media (max-width: 1024px) {
-  .about .about-content {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
+  max-width: 900px;
+  margin: 0 auto;
 }
 .about .about-text .about-paragraph {
   margin-bottom: 1.5rem;
@@ -791,12 +783,6 @@ body {
 .about .about-text .about-stats .stat-item .stat-label {
   color: #666666;
   font-size: 1rem;
-}
-.about .about-image img {
-  width: 100%;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .reviews {

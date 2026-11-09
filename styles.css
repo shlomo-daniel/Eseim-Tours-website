@@ -838,8 +838,16 @@ body {
   line-height: 1.8;
   color: #333333;
   margin-bottom: 1.5rem;
-  font-style: italic;
+  font-style: normal;
   flex-grow: 1;
+}
+.reviews .review-card .review-text p {
+  margin: 0 0 0.8rem;
+}
+.reviews .review-card .review-text ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.8rem;
 }
 .reviews .review-card .review-author {
   display: flex;
@@ -1254,5 +1262,28 @@ body {
   font-family: inherit;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.form-status {
+  margin: 1rem 0 0;
+  text-align: center;
+  font-weight: 600;
+}
+.form-status:empty {
+  display: none;
+}
+.form-status.success {
+  color: #1e8e3e;
+}
+.form-status.error {
+  color: #d93025;
+}
+.form-status.pending {
+  color: #666666;
+}
+
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -922,7 +922,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit,     minmax(min(100%, 300px), 1fr));
     gap: 30px;
-        max-width: 1100px;
+    max-width: 1100px;
     margin: 0 auto;
 
     @media (max-width: $mobile) {
@@ -959,8 +959,18 @@ body {
       line-height: 1.8;
       color: $text-color;
       margin-bottom: 1.5rem;
-      font-style: italic;
+      font-style: normal;
       flex-grow: 1;
+
+      p {
+        margin: 0 0 0.8rem;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0.8rem;
+      }
     }
 
     .review-author {
@@ -1433,4 +1443,32 @@ body {
     font-size: 1rem;
     cursor: pointer;
   }
+}
+
+
+.form-status {
+  margin: 1rem 0 0;
+  text-align: center;
+  font-weight: 600;
+
+  &:empty {
+    display: none;
+  }
+
+  &.success {
+    color: #1e8e3e;
+  }
+
+  &.error {
+    color: #d93025;
+  }
+
+  &.pending {
+    color: $text-light;
+  }
+}
+
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }

@@ -107,41 +107,38 @@ faqItems.forEach((item) => {
 
 // ===== Contact Form Handling =====
 const contactForm = document.getElementById("contact-form");
+const formStatus = document.getElementById("form-status");
 
-contactForm.addEventListener("submit", function (e) {
+function setFormStatus(text, type) {
+  formStatus.textContent = text;
+  formStatus.className = "form-status " + type;
+}
+
+contactForm.addEventListener("submit", async function (e) {
   e.preventDefault();
 
-  // Get form data
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const phone = document.getElementById("phone").value;
-  const message = document.getElementById("message").value;
+  const submitBtn = contactForm.querySelector(".submit-btn");
+  submitBtn.disabled = true;
+  setFormStatus("שולח...", "pending");
 
-  // Validate form
-  if (!name || !email || !phone || !message) {
-    alert("אנא מלא את כל השדות");
-    return;
+  try {
+    const response = await fetch(contactForm.action, {
+      method: "POST",
+      body: new FormData(contactForm),
+      headers: { Accept: "application/json" },
+    });
+
+    if (response.ok) {
+      setFormStatus("תודה על פנייתך! נחזור אליך בהקדם.", "success");
+      contactForm.reset();
+    } else {
+      setFormStatus("אירעה שגיאה בשליחת ההודעה. אנא נסו שוב או התקשרו אלינו.", "error");
+    }
+  } catch (err) {
+    setFormStatus("אירעה שגיאת רשת. אנא נסו שוב או התקשרו אלינו.", "error");
+  } finally {
+    submitBtn.disabled = false;
   }
-
-  // Create mailto link with form data
-  const subject = encodeURIComponent("פניה חדשה מאתר מובילים טורס");
-  const body = encodeURIComponent(
-    `שם: ${name}\n` +
-      `אימייל: ${email}\n` +
-      `טלפון: ${phone}\n\n` +
-      `הודעה:\n${message}`
-  );
-
-  const mailtoLink = `mailto:7ms701@gmail.com?subject=${subject}&body=${body}`;
-
-  // Open default email client
-  window.location.href = mailtoLink;
-
-  // Optional: Show success message
-  alert("תודה על פנייתך! תיבת האימייל שלך תיפתח כעת.");
-
-  // Reset form
-  contactForm.reset();
 });
 
 // ===== Form Field Animations =====
@@ -326,24 +323,6 @@ if (emailInput) {
     }
   });
 }
-
-// ===== Prevent Form Spam =====
-let formSubmitted = false;
-
-contactForm.addEventListener("submit", function (e) {
-  if (formSubmitted) {
-    e.preventDefault();
-    alert("הטופס כבר נשלח. אנא המתן מספר דקות לפני שליחה חוזרת.");
-    return false;
-  }
-
-  formSubmitted = true;
-
-  // Reset after 2 minutes
-  setTimeout(function () {
-    formSubmitted = false;
-  }, 120000);
-});
 
 // ===== Console Branding =====
 console.log(
